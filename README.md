@@ -72,7 +72,7 @@ But here is the explanation:
 - First, we have to create the create_gdt_entry function that takes four paremeters.
 - target, base, limit, access, flags.
 - Those are all unsigned integer.
--first we use set the limit( the 2 first offset )
+- first we use set the limit( the 2 first offset )
 - using 0xFF as an operand and another number. I don't know if it is magic or not.
 - the target is the actual descriptor
 - we set the first target[0] by doing an bit AND operation on the limit and the 0xFF
@@ -87,3 +87,6 @@ But here is the explanation:
 - the first operand is the flag OR-ed with 0x0F and then left shifted by 4
 - the second operand is the limit right shifted by 16  and then AND-ed with 0x0F
 - the last part of the descriptors will just be the base shifted to right by 24 and then AND-ed with 0xFF
+
+We have some selector we can actually load in assembly.
+
