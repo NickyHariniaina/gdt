@@ -72,20 +72,18 @@ But here is the explanation:
 - First, we have to create the create_gdt_entry function that takes four paremeters.
 - target, base, limit, access, flags.
 - Those are all unsigned integer.
-
-first we use set the limit( the 2 first offset )
-    - using 0xFF as an operand and another number. I don't know if it is magic or not.
-    - the target is the actual descriptor
-    - we set the first target[0] by doing an bit AND operation on the limit and the 0xFF
-    - for the second part, we do a bitshift operation with the limit ( shift to the left ) by 8 and then AND operation with the 0xFF
-    - for the BASE.
-    - same as above. bit AND operation but on the 0xFF and the base args we set earlier.
-    - target[3] will actually do the same as target[1], using base instead of the limit since we are setting the base, and then on the target[4]
-    we do the same things but we use 16 not 8 as an operand for the shift.
-    - the access byte will actually be placed at the 5 ( like in the descriptors table structure )
-    - we just set it with `= access`
-    - To set the 6th offset: just take `flags` and `limits`
-    - first it is gonna be a bit OR operation.
-    - the first operand is the flag OR-ed with 0x0F and then left shifted by 4
-    - the second operand is the limit right shifted by 16  and then AND-ed with 0x0F
-    - the last part of the descriptors will just be the base shifted to right by 24 and then AND-ed with 0xFF
+-first we use set the limit( the 2 first offset )
+- using 0xFF as an operand and another number. I don't know if it is magic or not.
+- the target is the actual descriptor
+- we set the first target[0] by doing an bit AND operation on the limit and the 0xFF
+- for the second part, we do a bitshift operation with the limit ( shift to the left ) by 8 and then AND operation with the 0xFF
+- for the BASE.
+- same as above. bit AND operation but on the 0xFF and the base args we set earlier.
+- target[3] will actually do the same as target[1], using base instead of the limit since we are setting the base, and then on the target[4] we do the same things but we use 16 not 8 as an operand for the shift.
+- the access byte will actually be placed at the 5 ( like in the descriptors table structure )
+- we just set it with `= access`
+- To set the 6th offset: just take `flags` and `limits`
+- first it is gonna be a bit OR operation.
+- the first operand is the flag OR-ed with 0x0F and then left shifted by 4
+- the second operand is the limit right shifted by 16  and then AND-ed with 0x0F
+- the last part of the descriptors will just be the base shifted to right by 24 and then AND-ed with 0xFF
