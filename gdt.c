@@ -9,6 +9,7 @@ void create_gdt(uint8_t *target, uint32_t base, uint32_t limit, uint8_t access,
   target[4] = (base >> 16) & 0xFF;
 
   target[5] = access;
-  target[6] = ((flags << 4) | ((limit >> 16) & 0x0F));
+  target[6] = flags << 4;
+  target[6] |= (limit >> 16) & 0x0F;
   target[7] = (base >> 24) & 0xFF;
 }

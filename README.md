@@ -88,5 +88,6 @@ But here is the explanation:
 - the second operand is the limit right shifted by 16  and then AND-ed with 0x0F
 - the last part of the descriptors will just be the base shifted to right by 24 and then AND-ed with 0xFF
 
+!!!!!!!!! I should correct the step above for the target[6] because it is not correct... yet... my current implementation is the best way if it is in C
 We have some selector we can actually load in assembly.
 
